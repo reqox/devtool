@@ -14,8 +14,9 @@ for cmd in git curl tmux nvim; do
         
         if [ "$cmd" = "nvim" ]; then
             curl https://github.com/neovim/neovim/releases/download/v0.12.5/nvim-linux-x86_64.appimage
+            echo -e "${GREEN}Chmod a+x for nvim-linux-x86_64.appimage"
             sudo chmod a+x nvim-linux-x86_64.appimage
-            echo "${GREEN}Move nvim to /usr/local/bin/..."
+            echo -e "${GREEN}Move nvim to /usr/local/bin/"
             sudo mv nvim-linux-x86_64.appimage /usr/local/bin/nvim
         else
             sudo apt update && sudo apt install -y "$cmd"
