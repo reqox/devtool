@@ -13,10 +13,10 @@ for cmd in git curl tmux nvim; do
         echo -e "${RED}Command '$cmd' not found. Installing...${NC}"
         
         if [ "$cmd" = "nvim" ]; then
-            mkdir -p ~/.local/bin
-            curl -fLo nvim-linux-x86_64.appimage https://github.com/neovim/neovim/releases/download/v0.12.5/nvim-linux-x86_64.appimage
-            chmod a+x nvim-linux-x86_64.appimage
-            mv nvim-linux-x86_64.appimage ~/.local/bin/nvim
+            curl https://github.com/neovim/neovim/releases/download/v0.12.5/nvim-linux-x86_64.appimage
+            sudo chmod a+x nvim-linux-x86_64.appimage
+            echo "${GREEN}Move nvim to /usr/local/bin/..."
+            sudo mv nvim-linux-x86_64.appimage /usr/local/bin/nvim
         else
             sudo apt update && sudo apt install -y "$cmd"
         fi
