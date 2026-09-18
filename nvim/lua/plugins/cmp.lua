@@ -24,19 +24,6 @@ return {
 		local s = luasnip.snippet
 		local t = luasnip.text_node
 
-		luasnip.add_snippets("typescriptreact", {
-			s("Image", {
-				t("<Image "),
-				t("className={''} "),
-				t("src={''} "),
-				t("alt={''} "),
-				t("width={100} "),
-				t("height={100} "),
-				t("loading={'lazy'} "),
-				t(" />"),
-			}),
-		})
-
 		cmp.setup({
 			view = {
 				docs = {
@@ -45,7 +32,10 @@ return {
 			},
 			snippet = {
 				expand = function(args)
-					luasnip.lsp_expand(args.body)
+					local ok, _ = pcall(luasnip.lsp_expand, args.body)
+					if not ok then
+						vim.snippet.expand(args.body)
+					end
 				end,
 			},
 			mapping = cmp.mapping.preset.insert({
@@ -59,10 +49,6 @@ return {
 						fallback()
 					end
 				end, { "i", "s" }),
-
-				-- Навигация (можно оставить твой Ctrl+n/p или заменить на Ctrl+j/k)
-				["<C-j>"] = cmp.mapping.select_next_item(),
-				["<C-k>"] = cmp.mapping.select_prev_item(),
 
 				-- Скролл документации (новое!)
 				["<C-b>"] = cmp.mapping.scroll_docs(-4),

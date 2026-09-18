@@ -48,15 +48,15 @@
 
 local k = vim.keymap
 
-k.set({ "n" }, "<leader>o", ":put _<CR>", { desc = "Вставить пустую строку ниже" })
-k.set({ "n" }, "<leader>O", ":put! _<CR>", { desc = "Вставить пустую строку выше" })
+k.set({ "n" }, "<leader>o", "<cmd>put _<CR>", { desc = "Вставить пустую строку ниже" })
+k.set({ "n" }, "<leader>O", "<cmd>put! _<CR>", { desc = "Вставить пустую строку выше" })
 
 k.set({ "n" }, "<C-j>", "<C-w>j", { desc = "Move to lower window" })
 k.set({ "n" }, "<C-k>", "<C-w>k", { desc = "Move to upper window" })
 k.set({ "n" }, "<C-h>", "<C-w>h", { desc = "Move to left window" })
 k.set({ "n" }, "<C-l>", "<C-w>l", { desc = "Move to right window" })
 
-k.set({ "n" }, "<C-S-j>", "<C-w>J", { desc = "Move window to lower" })
-k.set({ "n" }, "<C-S-k>", "<C-w>K", { desc = "Move window to upper" })
-k.set({ "n" }, "<C-S-h>", "<C-w>H", { desc = "Move window to left" })
-k.set({ "n" }, "<C-S-l>", "<C-w>L", { desc = "Move window to right" })
+k.set({ "n" }, "<C-A-j>", "<cmd>resize -2<CR>", { desc = "Уменьшить высоту окна" })
+k.set({ "n" }, "<C-A-k>", "<cmd>resize +2<CR>", { desc = "Увеличить высоту окна" })
+k.set({ "n" }, "<C-A-h>", "<cmd>vertical resize +2<CR>", { desc = "Уменьшить ширину окна" })
+k.set({ "n" }, "<C-A-l>", "<cmd>vertical resize -2<CR>", { desc = "Увеличить ширину окна" })

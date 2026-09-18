@@ -61,12 +61,6 @@ return {
 		})
 		vim.lsp.config("eslint", {
 			root_markers = { ".eslintrc.js", ".eslintrc.json", "eslint.config.js", "package.json" },
-			-- settings = {
-			-- 	experimental = {
-			-- 		useFlatConfig = true,
-			-- 	},
-			-- 	workingDirectory = { mode = "location" },
-			-- },
 		})
 		vim.lsp.config("graphql", {
 			root_markers = { ".graphqlrc", ".graphqlrc.yml", "package.json" },
@@ -82,6 +76,7 @@ return {
 			"jsonls",
 			"pyright",
 			"eslint",
+			"rust_analyzer",
 		})
 	end,
 }

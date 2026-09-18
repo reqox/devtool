@@ -2,20 +2,12 @@ return {
 	{
 		"williamboman/mason-lspconfig.nvim",
 		opts = {
+			automatic_installation = true,
 			ensure_installed = {
-				"ts_ls",
-				"lua_ls",
-				"html",
-				"cssls",
-				-- "tailwindcss",
-				-- "svelte",
-				"graphql",
-				"emmet_ls",
-				-- "prismals",
-				"sqlls",
-				"jsonls",
-				"pyright",
-				"eslint",
+				"html", "cssls", "emmet_ls", "lua_ls", 
+				-- "ts_ls", "eslint", 
+				-- "graphql", "sqlls", "jsonls",
+				-- "pyright",
 			},
 		},
 		dependencies = {
@@ -40,10 +32,6 @@ return {
 			ensure_installed = {
 				"prettier", -- prettier formatter
 				"stylua", -- lua formatter
-				"isort", -- python formatter
-				"black", -- python formatter
-				"pylint",
-				"eslint_d",
 			},
 		},
 		dependencies = {
