@@ -9,9 +9,17 @@ DATE_SUFFIX=$(date +%Y%m%d_%H%M%S)
 echo -e "${GREEN}==> Installing has been started...${NC}"
 
 for cmd in git curl tmux nvim; do
-    if ! command -v $cmd &> /dev/null; then
-        echo -e "${RED}Ошибка: Команда '$cmd' не найдена. Пожалуйста, установите её перед продолжением.${NC}"
-        exit 1
+    if ! command -v "$cmd" &> /dev/null; then
+        echo -e "${RED}Command '$cmd' not found. Installing...${NC}"
+        
+        if [ "$cmd" = "nvim" ]; then
+            mkdir -p ~/.local/bin
+            curl -fLo nvim-linux-x86_64.appimage https://github.com/neovim/neovim/releases/download/v0.12.5/nvim-linux-x86_64.appimage
+            chmod a+x nvim-linux-x86_64.appimage
+            mv nvim-linux-x86_64.appimage ~/.local/bin/nvim
+        else
+            sudo apt update && sudo apt install -y "$cmd"
+        fi
     fi
 done
 
