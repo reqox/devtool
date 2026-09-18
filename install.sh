@@ -8,16 +8,13 @@ NC='\033[0m'
 DATE_SUFFIX=$(date +%Y%m%d_%H%M%S)
 echo -e "${GREEN}==> Installing has been started...${NC}"
 
-for cmd in git curl tmux nvim; do
+for cmd in git curl tar tmux nvim; do
     if ! command -v "$cmd" &> /dev/null; then
         echo -e "${RED}Command '$cmd' not found. Installing...${NC}"
         
         if [ "$cmd" = "nvim" ]; then
-            curl https://github.com/neovim/neovim/releases/download/v0.12.5/nvim-linux-x86_64.appimage
-            echo -e "${GREEN}Chmod a+x for nvim-linux-x86_64.appimage${NC}"
-            sudo chmod a+x nvim-linux-x86_64.appimage
-            echo -e "${GREEN}Move nvim to /usr/local/bin/${NC}"
-            sudo mv nvim-linux-x86_64.appimage /usr/local/bin/nvim
+            curl -fLo nvim https://github.com/neovim/neovim/releases/download/v0.12.5/nvim-linux-x86_64.appimage
+            sudo chmod a+x nvim && sudo mv nvim /usr/bin/
         else
             sudo apt update && sudo apt install -y "$cmd"
         fi
