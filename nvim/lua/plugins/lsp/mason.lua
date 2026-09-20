@@ -4,10 +4,11 @@ return {
 		opts = {
 			automatic_installation = true,
 			ensure_installed = {
-				"html", "cssls", "emmet_ls", "lua_ls", 
-				-- "ts_ls", "eslint", 
+				-- "html", "cssls", "emmet_ls", "lua_ls",
+				-- "ts_ls", "eslint",
 				-- "graphql", "sqlls", "jsonls",
 				-- "pyright",
+				-- "rust_analyzer",
 			},
 		},
 		dependencies = {
@@ -30,8 +31,8 @@ return {
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
 		opts = {
 			ensure_installed = {
-				"prettier", -- prettier formatter
-				"stylua", -- lua formatter
+				-- "prettier", -- prettier formatter
+				-- "stylua", -- lua formatter
 			},
 		},
 		dependencies = {
