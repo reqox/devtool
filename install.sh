@@ -43,5 +43,7 @@ fi
 echo "Apply nvim config..."
 mkdir -p ~/.config/
 cp -rv ./devtool/nvim ~/.config/nvim
+echo "Clear nvim cache..."
+~/.config/nvim/nvim--clear
 
 echo -e "${GREEN}==> Installation completed successfully!${NC}"
