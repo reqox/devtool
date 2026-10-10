@@ -8,7 +8,7 @@ NC='\033[0m'
 DATE_SUFFIX=$(date +%Y%m%d_%H%M%S)
 echo -e "${GREEN}==> Installing has been started...${NC}"
 
-for cmd in git curl tar gcc make tmux nvim rg fdfind; do
+for cmd in git curl tar gcc make tmux nvim rg fdfind wl-clipboard xclip; do
     if ! command -v "$cmd" &> /dev/null; then
         echo -e "${RED}Command '$cmd' not found. Installing...${NC}"
 
