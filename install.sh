@@ -8,7 +8,8 @@ NC='\033[0m'
 DATE_SUFFIX=$(date +%Y%m%d_%H%M%S)
 echo -e "${GREEN}==> Installing has been started...${NC}"
 
-for cmd in git curl tar gcc make tmux nvim rg fdfind wl-clipboard xclip; do
+# sudo apt install wl-clipboard xclip # если provider clipboard не найден на системе wayland
+for cmd in git curl tar gcc make tmux nvim rg fdfind; do
     if ! command -v "$cmd" &> /dev/null; then
         echo -e "${RED}Command '$cmd' not found. Installing...${NC}"
 
@@ -26,27 +27,29 @@ for cmd in git curl tar gcc make tmux nvim rg fdfind wl-clipboard xclip; do
 done
 
 echo "Clone repo..."
-if [ -d "devtool" ]; then
-    echo "Folder 'devtool' already exists, pulling updates..."
-    git -C devtool pull
+if [ -d ".devtool" ]; then
+    echo "Folder '.devtool' already exists, pulling updates..."
+    git -C .devtool pull
 else
-    git clone https://github.com/reqox/devtool.git
+    git clone https://github.com/reqox/.devtool.git
 fi
 
+echo "Apply .tmux.conf..."
 if [ -f ~/.tmux.conf ]; then
     echo "Backup your .tmux.conf to .tmux.conf.bak_${DATE_SUFFIX}"
     mv ~/.tmux.conf ~/.tmux.conf.bak_${DATE_SUFFIX}
 fi
-echo "Apply .tmux.conf..."
-cp ./devtool/tmux/.tmux.conf ~/.tmux.conf --verbose
+# cp ./devtool/tmux/.tmux.conf ~/.tmux.conf --verbose
+ln -s $HOME/.devtool/tmux/.tmux.conf $HOME/.tmux.conf
 
+echo "Apply nvim config..."
 if [ -d ~/.config/nvim ]; then
   echo "Backup your nvim config to nvim.bak_${DATE_SUFFIX}"
   mv ~/.config/nvim ~/.config/nvim.bak_${DATE_SUFFIX}
 fi
-echo "Apply nvim config..."
 mkdir -p ~/.config/
-cp -rv ./devtool/nvim ~/.config/nvim
+# cp -rv ./devtool/nvim ~/.config/nvim
+ln -s $HOME/.devtool/nvim $HOME/.config/nvim
 echo "Clear nvim cache..."
 ~/.config/nvim/nvim--clear
 
