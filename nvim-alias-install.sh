@@ -1,7 +1,7 @@
 #!/bin/bash
 
-if grep -q '^nvd ()' ~/.bashrc; then
-  echo "nvd уже есть в ~/.bashrc, удали старую функцию и запусти заново, чтобы обновить"
+if grep -q '^nvim ()' ~/.bashrc; then
+  echo "nvim уже есть в ~/.bashrc, удали старую функцию и запусти заново, чтобы обновить"
   exit 0
 fi
 
@@ -37,7 +37,7 @@ nvim () {
   done
 
   if [[ "$root" == "/" ]]; then
-    echo "nvd: пути слишком разные, общий корень — /, отказываюсь монтировать его" >&2
+    echo "nvim: пути слишком разные, общий корень — /, отказываюсь монтировать его" >&2
     return 1
   fi
 
@@ -51,7 +51,11 @@ nvim () {
     fi
   done
 
+  # В контейнере root, а файлы принадлежат хосту — без safe.directory git отказывается работать
   docker run -it --rm \
+    --env GIT_CONFIG_COUNT=1 \
+    --env GIT_CONFIG_KEY_0=safe.directory \
+    --env GIT_CONFIG_VALUE_0='*' \
     --volume "$root:/mnt/workspace" \
     --workdir /mnt/workspace \
     nvim:sync nvim "${args[@]}"
