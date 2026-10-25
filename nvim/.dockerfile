@@ -41,7 +41,6 @@ RUN wget https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x8
     && rm nvim-linux-x86_64.tar.gz
 
 COPY . /root/.config/nvim
-RUN rm -rf /root/.cache/tree-sitter/lock/*
-RUN nvim --headless "+Lazy! sync" +qa
+RUN nvim --headless "+Lazy! sync" "+luafile /root/.config/nvim/build.lua" +qa
 
 CMD ["nvim"]
