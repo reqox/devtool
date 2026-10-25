@@ -8,4 +8,4 @@ nv () {
   path="$(realpath "$path" 2>/dev/null || echo "$path")"
   docker run -it --rm --volume "$path:/mnt/workspace" nvim:sync
 }
-'EOF'
+EOF
