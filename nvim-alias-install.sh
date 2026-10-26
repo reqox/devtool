@@ -1,12 +1,12 @@
 #!/bin/bash
+set -euo pipefail
 
-if grep -q '^nvim ()' ~/.bashrc; then
-  echo "nvim уже есть в ~/.bashrc, удали старую функцию и запусти заново, чтобы обновить"
-  exit 0
-fi
+BEGIN="# >>> devtool nvim >>>"
+END="# <<< devtool nvim <<<"
+BASHRC="$HOME/.bashrc"
 
-cat << 'EOF' >> ~/.bashrc
-
+BLOCK=$(cat <<'EOF'
+# >>> devtool nvim >>>
 nvim () {
   local args=() roots=() a p root
 
@@ -51,15 +51,42 @@ nvim () {
     fi
   done
 
-  # В контейнере root, а файлы принадлежат хосту — без safe.directory git отказывается работать
+  # UID/GID берём у хоста: внутри контейнера нет записи в /etc/passwd для них,
+  # поэтому HOME и SHELL задаём явно, а домашняя директория — tmpfs,
+  # доступный на запись любому UID (mode 1777), без chown.
+  # Конфиг и плагины лежат в образе под /opt/nvim (см. XDG_* в Dockerfile).
+  # ctrl-^ вместо ctrl-p: ctrl-p — это detach-префикс docker, до TTY он не доходит.
   docker run -it --rm \
-    --env GIT_CONFIG_COUNT=1 \
-    --env GIT_CONFIG_KEY_0=safe.directory \
-    --env GIT_CONFIG_VALUE_0='*' \
+    --user "$(id -u):$(id -g)" \
+    --detach-keys "ctrl-^" \
+    --env HOME=/home/dev \
+    --env TERM=xterm-256color \
+    --tmpfs "/home/dev:rw,exec,mode=1777" \
     --volume "$root:/mnt/workspace" \
     --workdir /mnt/workspace \
     nvim:sync nvim "${args[@]}"
 }
+# <<< devtool nvim <<<
 EOF
+)
+
+touch "$BASHRC"
+
+# Пересобираем .bashrc без прошлой версии блока, а также без старой функции,
+# которая была добавлена до появления маркеров.
+tmp=$(mktemp)
+awk -v begin="$BEGIN" -v end="$END" '
+  $0 == begin { skip = 1; next }
+  $0 == end   { skip = 0; next }
+  skip { next }
+  /^nvim \(\) \{$/ { legacy = 1; next }
+  legacy && /^\}$/ { legacy = 0; next }
+  legacy { next }
+  { print }
+' "$BASHRC" > "$tmp"
+
+printf '\n%s\n' "$BLOCK" >> "$tmp"
+cat "$tmp" > "$BASHRC"
+rm -f "$tmp"
 
 echo "Готово. Выполни: source ~/.bashrc"
