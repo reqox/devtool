@@ -51,11 +51,6 @@ nvim () {
     fi
   done
 
-  # UID/GID берём у хоста: внутри контейнера нет записи в /etc/passwd для них,
-  # поэтому HOME и SHELL задаём явно, а домашняя директория — tmpfs,
-  # доступный на запись любому UID (mode 1777), без chown.
-  # Конфиг и плагины лежат в образе под /opt/nvim (см. XDG_* в Dockerfile).
-  # ctrl-^ вместо ctrl-p: ctrl-p — это detach-префикс docker, до TTY он не доходит.
   docker run -it --rm \
     --user "$(id -u):$(id -g)" \
     --detach-keys "ctrl-^" \
@@ -64,7 +59,7 @@ nvim () {
     --tmpfs "/home/dev:rw,exec,mode=1777" \
     --volume "$root:/mnt/workspace" \
     --workdir /mnt/workspace \
-    nvim:sync nvim "${args[@]}"
+    nvim-sync:0.1.0 nvim "${args[@]}"
 }
 # <<< devtool nvim <<<
 EOF
