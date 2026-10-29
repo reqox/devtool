@@ -25,6 +25,11 @@ if not ok then
 	vim.notify("Error to load the module " .. tostring(keymap_module), vim.log.levels.ERROR)
 end
 
+local ok, clipboard_module = pcall(require, "config.clipboard")
+if not ok then
+	vim.notify("Error to load the module " .. tostring(clipboard_module), vim.log.levels.ERROR)
+end
+
 require("lazy").setup({
 	spec = {
 		{ import = "plugins" },
