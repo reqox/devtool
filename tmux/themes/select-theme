@@ -1,0 +1,15 @@
+#!/bin/sh
+set -eu
+
+dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+
+name=$1
+target="$dir/theme-$name.conf"
+
+[ -f "$target" ] || { echo "select-theme: нет такой темы '$name'" >&2; exit 1; }
+
+ln -sfn "theme-$name.conf" "$dir/theme.conf"
+tmux set -g @theme "$name"
+tmux source-file "$HOME/.tmux.conf"
+tmux display-message -d 500 "theme: $name" 2>/dev/null || :
+exit 0
