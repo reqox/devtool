@@ -1,0 +1,319 @@
+{
+  "terminal.integrated.showExitAlert": false,
+  // ── Workbench & Window ──────────────────────────────────────────────────
+
+  "workbench.colorTheme": "Cursor Dark", // цветовая тема редактора
+  "workbench.activityBar.location": "bottom", // панель активности (иконки) снизу
+  "workbench.statusBar.visible": true, // строка состояния внизу окна
+  "workbench.startupEditor": "none", // что открывать при запуске
+  "workbench.secondarySideBar.defaultVisibility": "hidden", // правая боковая панель скрыта по умолчанию
+  "workbench.list.smoothScrolling": false, // плавная прокрутка списков
+  "workbench.tree.enableStickyScroll": false, // закрепление заголовков в дереве файлов
+  "workbench.experimental.chat.enabled": false, // экспериментальный чат workbench
+  "workbench.editor.enablePreview": false, // файлы открываются сразу, без режима preview
+  "workbench.editor.openSideBySideDirection": "right", // split-редактор открывается справа
+  "workbench.editor.editorActionsLocation": "hidden", // скрыть кнопки действий на вкладках
+  "workbench.editor.empty.hint": "hidden", // скрыть подсказку в пустом редакторе
+  "workbench.sideBar.location": "right",
+
+  "window.title": "${activeEditorLong}",
+  "window.menuBarVisibility": "compact", // компактное меню (скрыто, вызывается по Alt)
+  "window.commandCenter": false, // отключить command center в заголовке окна
+  "window.density.editorTabHeight": "compact", // компактная высота вкладок
+
+  // ── Editor: внешний вид ───────────────────────────────────────────────────
+
+  "editor.scrollbar.vertical": "hidden", // скрыть скролбар
+  "editor.scrollbar.horizontal": "hidden",
+  "editor.fontSize": 13, // размер шрифта
+  "editor.lineHeight": 18, // высота строки
+  "editor.lineNumbers": "relative", // номера строк относительно курсора
+  "editor.wordWrap": "bounded", // перенос длинных строк
+  "editor.wordWrapColumn": 120, // колонка переноса (если wrap = bounded)
+  "editor.padding.bottom": 64, // отступ снизу в редакторе
+  "editor.tabSize": 2, // размер табуляции
+  "editor.insertSpaces": true, // таб → пробелы
+  "editor.autoIndent": "advanced", // умный автоотступ
+  "editor.glyphMargin": false, // скрыть поле с иконками (breakpoint и т.д.)
+  "editor.minimap.enabled": false, // отключить minimap
+  "editor.renderControlCharacters": false, // не показывать управляющие символы
+  "editor.lightbulb.enabled": "off", // отключить лампочку быстрых исправлений
+  "editor.selectionHighlight": false, // не подсвечивать другие вхождения выделенного слова
+  "editor.occurrencesHighlight": "off",
+  "editor.hover.enabled": false,
+
+  // ── Editor: курсор ────────────────────────────────────────────────────────
+
+  "editor.cursorStyle": "underline", // стиль курсора
+  "editor.cursorBlinking": "solid", // курсор не мигает
+  "editor.cursorSmoothCaretAnimation": "off", // плавная анимация курсора при явных переходах
+  "editor.cursorSurroundingLines": 8, // строк контекста вокруг курсора при прокрутке
+  "editor.hideCursorInOverviewRuler": true, // скрыть курсор в overview ruler
+
+  // ── Editor: прокрутка ─────────────────────────────────────────────────────
+
+  "editor.scrollBeyondLastLine": false, // не прокручивать ниже последней строки
+  "editor.smoothScrolling": false, // плавная прокрутка редактора
+  "editor.stickyScroll.enabled": false, // закрепление текущего scope сверху
+  "editor.stickyScroll.scrollWithEditor": false, // sticky scroll не следует за прокруткой
+
+  // ── Editor: авто-закрытие ─────────────────────────────────────────────────
+
+  "editor.autoClosingBrackets": "always", // автозакрытие скобок
+  "editor.autoClosingQuotes": "always", // автозакрытие кавычек
+  "editor.autoClosingDelete": "always", // удаление парных символов при Backspace
+  "editor.linkedEditing": true, // синхронное редактирование парных HTML/XML-тегов
+  "html.autoClosingTags": true, // автозакрытие HTML-тегов
+  "js/ts.autoClosingTags.enabled": true, // автозакрытие JSX/TSX-тегов (JS + TS)
+
+  // ── Editor: форматирование и сохранение ───────────────────────────────────
+
+  "editor.defaultFormatter": "esbenp.prettier-vscode", // форматтер по умолчанию
+  "editor.formatOnSave": true, // форматировать при сохранении
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "never", // не сортировать импорты при сохранении
+    "source.fixAll.eslint": "explicit", // ESLint fix при явном сохранении
+  },
+
+  // ── Prettier ──────────────────────────────────────────────────────────────
+
+  "prettier.printWidth": 120, // максимальная длина строки
+  "prettier.tabWidth": 2, // ширина отступа
+  "prettier.useTabs": false, // пробелы вместо табов
+  "prettier.semi": true, // точки с запятой
+  "prettier.singleQuote": true, // одинарные кавычки
+  "prettier.trailingComma": "all", // trailing comma везде, где можно
+  "prettier.arrowParens": "always", // скобки у стрелочных функций
+  "prettier.endOfLine": "lf", // перевод строки LF
+  "prettier.jsxSingleQuote": false, // в JSX — двойные кавычки
+  "prettier.htmlWhitespaceSensitivity": "css", // чувствительность к пробелам в HTML
+
+  // ── Editor: навигация и выделение ─────────────────────────────────────────
+
+  "editor.gotoLocation.multipleDefinitions": "goto", // сразу переходить к определению
+  "editor.find.cursorMoveOnType": false, // не двигать курсор при вводе в поиске
+  "editor.smartSelect.selectSubwords": true, // умное выделение подслов (camelCase)
+  "editor.multiCursorModifier": "ctrlCmd", // модификатор для мультикурсора
+
+  // ── Editor: Unicode ───────────────────────────────────────────────────────
+
+  "editor.unicodeHighlight.ambiguousCharacters": false, // не подсвечивать похожие символы
+  "editor.unicodeHighlight.nonBasicASCII": false, // не подсвечивать non-ASCII
+  "editor.unicodeHighlight.allowedCharacters": {
+    "а": true, // разрешённые кириллические символы (без предупреждений)
+    "с": true,
+    "Т": true,
+    "б": true,
+    "е": true,
+    " ": true,
+    "ц": true,
+  },
+
+  // ── Editor: прочее ────────────────────────────────────────────────────────
+
+  "editor.mouseWheelZoom": false, // не масштабировать шрифт колёсиком
+  "editor.accessibilitySupport": "off", // отключить режим доступности
+  "editor.inlineSuggest.enabled": false, // inline-подсказки (Copilot и т.д.)
+  "diffEditor.ignoreTrimWhitespace": false,
+  "breadcrumbs.enabled": false,
+  "breadcrumbs.icons": false, // иконки в breadcrumbs
+  "breadcrumbs.showKeys": false, // ключи объектов
+  "breadcrumbs.showFiles": false, // файлы
+  "breadcrumbs.symbolPath": "off", // путь символов отключён
+  "breadcrumbs.showArrays": false, // массивы
+  "breadcrumbs.showEvents": false, // события
+  "breadcrumbs.showFields": false, // поля
+  "breadcrumbs.showClasses": false, // классы
+  "breadcrumbs.showMethods": false, // методы
+  "breadcrumbs.showBooleans": false, // boolean
+  "breadcrumbs.showFunctions": false, // функции
+  "breadcrumbs.showConstants": false, // константы
+  "breadcrumbs.showEnumMembers": false, // члены enum
+  "breadcrumbs.showConstructors": false, // конструкторы
+
+  // ── Explorer ──────────────────────────────────────────────────────────────
+
+  "explorer.compactFolders": false, // не сжимать одноимённые папки в дереве
+  "explorer.confirmDelete": false, // удалять без подтверждения
+  "explorer.confirmDragAndDrop": false, // drag-and-drop без подтверждения
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.patterns": {
+    "*.ts": "${capture}.js", // вложенные файлы рядом с .ts
+    "*.js": "${capture}.js.map, ${capture}.min.js, ${capture}.d.ts",
+    "*.jsx": "${capture}.js",
+    "*.tsx": "${capture}.ts",
+    "tsconfig.json": "tsconfig.*.json",
+    "package.json": "package-lock.json, yarn.lock, pnpm-*.yaml, bun.lockb, bun.lock",
+    "vite.config.ts": "postcss.config*, stylelint.config*, eslint.config*, .prettierrc",
+  },
+
+  // ── Debug ─────────────────────────────────────────────────────────────────
+
+  "debug.toolBarLocation": "hidden", // скрыть панель отладки
+  "debug.focusWindowOnBreak": false, // не переключать окно на breakpoint
+  "debug.showInlineBreakpointCandidates": false, // не показывать inline breakpoint-кандидаты
+  "debug.showBreakpointsInOverviewRuler": false, // breakpoints не в overview ruler
+
+  // ── Terminal ──────────────────────────────────────────────────────────────
+
+  "terminal.integrated.smoothScrolling": true, // плавная прокрутка терминала
+  "terminal.integrated.initialHint": false, // без начальной подсказки в терминале
+
+  // ── Emmet ─────────────────────────────────────────────────────────────────
+
+  "emmet.triggerExpansionOnTab": true, // Emmet по Tab
+  "emmet.includeLanguages": {
+    "blade": "html", // Emmet в Blade как HTML
+    "javascript": "javascriptreact", // JSX
+    "typescript": "typescriptreact", // TSX
+    "vue": "vue", // Vue SFC
+  },
+
+  // ── JavaScript & TypeScript ───────────────────────────────────────────────
+
+  "js/ts.preferences.quoteStyle": "single", // одинарные кавычки в JS
+  "js/ts.suggest.autoImports": true, // автоимпорты в JS
+  "js/ts.updateImportsOnFileMove.enabled": "always", // обновлять импорты при перемещении (TS)
+  "js/ts.updateImportsOnPaste.enabled": true, // обновлять импорты при вставке
+  "js/ts.preferences.includePackageJsonAutoImports": "on", // автоимпорты из package.json
+  "js/ts.inlayHints.parameterNames.enabled": "none", // inlay hints: имена параметров (JS)
+  "js/ts.inlayHints.parameterTypes.enabled": false, // inlay hints: типы параметров (JS)
+  "js/ts.inlayHints.variableTypes.enabled": false, // inlay hints: типы переменных (JS)
+  "js/ts.inlayHints.propertyDeclarationTypes.enabled": false, // inlay hints: типы свойств (JS)
+  "js/ts.inlayHints.functionLikeReturnTypes.enabled": false, // inlay hints: return type (JS)
+
+  // ── Git ───────────────────────────────────────────────────────────────────
+
+  "git.ignoreMissingGitWarning": true, // не предупреждать, если git не найден
+
+  // ── Chat, Copilot & AI ────────────────────────────────────────────────────
+
+  "chat.agent.enabled": false, // агент Cursor
+  "chat.commandCenter.enabled": false, // чат в command center
+  "chat.detectParticipant.enabled": false, // определение участников чата
+  "chat.viewSessions.orientation": "stacked", // ориентация сессий чата
+  "inlineChat.holdToSpeak": false, // голосовой ввод в inline chat
+
+  // ── Extensions ────────────────────────────────────────────────────────────
+
+  "extensions.experimental.affinity": {
+    "asvetliakov.vscode-neovim": 1, // Neovim в отдельном процессе
+  },
+  "CSSNavigation.enableLogLevelMessage": false, // логи расширения CSS Navigation
+  "svg.preview.mode": "svg", // режим превью SVG
+
+  // ── Security, Telemetry & Network ───────────────────────────────────────────
+
+  "security.workspace.trust.untrustedFiles": "open", // открывать недоверенные файлы без prompt
+  "telemetry.telemetryLevel": "off", // телеметрия отключена
+  "http.proxy": "http://127.0.0.1:2080",
+  "http.proxySupport": "override",
+  "http.proxyStrictSSL": true,
+  "workbench.layoutControl.enabled": false,
+  "window.titleBarStyle": "native", // без системного proxy
+
+  // ── VIM ───────────────────────────────────────────
+  "vim.leader": "<space>",
+  "vim.normalModeKeyBindingsNonRecursive": [
+    // --- Диагностика ошибок
+    { "before": ["<leader>", "d"], "commands": ["editor.action.showHover"] },
+    { "before": ["[", "d"], "commands": ["editor.action.marker.prev"] },
+    { "before": ["]", "d"], "commands": ["editor.action.marker.next"] },
+
+    {
+      "before": ["<leader>", "r", "n"],
+      "commands": ["editor.action.rename"],
+    },
+    {
+      "before": ["<leader>", "c", "a"],
+      "commands": ["editor.action.quickFix"],
+    },
+
+    // --- Навигация и информация
+    {
+      "before": ["g", "d"], // gd — Перейти к определению (Definition: реализация функции/переменной)
+      "commands": ["editor.action.revealDefinition"],
+    },
+    {
+      "before": ["g", "D"], // gD — Перейти к объявлению (Declaration: типы/header/интерфейсы)
+      "commands": ["editor.action.revealDeclaration"],
+    },
+    {
+      "before": ["g", "i"], // gi — Перейти к реализации (Implementation: для классов и интерфейсов)
+      "commands": ["editor.action.goToImplementation"],
+    },
+    {
+      "before": ["g", "r"], // gr — Показать все использования (References)
+      "commands": ["editor.action.referenceSearch.trigger"],
+    },
+
+    { "before": ["<leader>", "<tab>", "n"], "commands": ["workbench.action.nextEditor"] },
+    { "before": ["<leader>", "<tab>", "p"], "commands": ["workbench.action.previousEditor"] },
+
+    // --- Аналоги put ---
+    {
+      "before": ["<leader>", "o"],
+      "commands": ["editor.action.insertLineAfter"],
+    },
+    {
+      "before": ["<leader>", "O"],
+      "commands": ["editor.action.insertLineBefore"],
+    },
+
+    // --- NvimTree аналоги ---
+    {
+      "before": ["<leader>", "e", "e"], // <leader>ee - Переключение видимости проводника (Toggle file explorer)
+      "commands": ["workbench.action.toggleSidebarVisibility"],
+    },
+    {
+      "before": ["<leader>", "e", "f"], // <leader>ef - Показать текущий файл в дереве (NvimTreeFindFile)
+      "commands": ["workbench.files.action.focusFilesExplorer", "workbench.files.action.showActiveFileInExplorer"],
+    },
+    {
+      "before": ["<leader>", "e", "c"], // <leader>ec - Свернуть все папки в проводнике (NvimTreeCollapse)
+      "commands": ["list.collapseAll"],
+    },
+    {
+      "before": ["<leader>", "e", "r"], // <leader>er - Обновить проводник (NvimTreeRefresh)
+      "commands": ["workbench.files.action.refreshFilesExplorer"],
+    },
+    {
+      "before": ["<leader>", "t"],
+      "commands": ["workbench.action.terminal.focus"],
+    },
+    {
+      "before": ["<leader>", "T"],
+      "commands": ["workbench.action.closePanel"],
+    },
+
+    {
+      "before": ["<leader>", "r", "r"],
+      "commands": ["rust-analyzer.run"],
+    },
+  ],
+  "cursor.general.glassShowWarningNotifications": true,
+  "cursor.composer.conversationDensity": "detailed",
+  "cursor.composer.editorConversationDensity": "detailed",
+  "cursor.cpp.enablePartialAccepts": true,
+  "workbench.agentsWindowButton.enabled": false,
+
+  //rust-analyzer
+  "rust-analyzer.inlayHints.typeHints.enable": false,
+  "rust-analyzer.inlayHints.chainingHints.enable": false,
+  "rust-analyzer.inlayHints.implicitDrops.enable": false,
+  "rust-analyzer.inlayHints.reborrowHints.enable": "never",
+  "rust-analyzer.inlayHints.parameterHints.enable": false,
+  "rust-analyzer.inlayHints.bindingModeHints.enable": false,
+  "rust-analyzer.inlayHints.closingBraceHints.enable": false,
+  "rust-analyzer.inlayHints.discriminantHints.enable": "never",
+  "rust-analyzer.inlayHints.rangeExclusiveHints.enable": false,
+  "rust-analyzer.inlayHints.closureCaptureHints.enable": false,
+  "rust-analyzer.inlayHints.lifetimeElisionHints.enable": "never",
+  "rust-analyzer.inlayHints.impliedDynTraitHints.enable": false,
+  "rust-analyzer.inlayHints.closureReturnTypeHints.enable": "never",
+  "rust-analyzer.inlayHints.implicitSizedBoundHints.enable": false,
+  "rust-analyzer.inlayHints.expressionAdjustmentHints.enable": "never",
+  "rust-analyzer.inlayHints.genericParameterHints.type.enable": false,
+  "security.promptForLocalFileProtocolHandling": false,
+  "cursor.general.disableHttp2": true,
+}
