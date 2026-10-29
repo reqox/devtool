@@ -10,8 +10,6 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 WORKDIR /mnt/workspace
 
-# В рантайме нужны только toolchain и rustup-прокси.
-# Registry/git-кэш cargo в образ не тащим.
 COPY --from=builder /usr/local/rustup /usr/local/rustup
 COPY --from=builder /usr/local/cargo/bin /usr/local/cargo/bin
 
@@ -45,10 +43,6 @@ RUN wget -O /tmp/nvim.tar.gz "https://github.com/neovim/neovim/releases/download
     && ln -sf /opt/nvim-linux-x86_64/bin/nvim /usr/bin/nvim \
     && rm /tmp/nvim.tar.gz
 
-# Конфиг и данные nvim лежат по фиксированным путям, а не в $HOME.
-# В рантайме UID/GID берутся у хоста, и записи в /etc/passwd для них нет,
-# поэтому ни имя пользователя, ни его домашняя директория нам недоступны.
-# XDG-переменные снимают эту зависимость: nvim сам добавляет к ним /nvim.
 ENV XDG_CONFIG_HOME=/opt/nvim/config \
     XDG_DATA_HOME=/opt/nvim/data \
     XDG_STATE_HOME=/opt/nvim/state \
@@ -56,16 +50,8 @@ ENV XDG_CONFIG_HOME=/opt/nvim/config \
     SHELL=/bin/bash
 
 COPY . /opt/nvim/config/nvim
-# umask 000: всё, что создаёт сборка (плагины, mason-пакеты, парсеры),
-# сразу получает права 666/777. Иначе пришлось бы chmod'ить отдельным слоем,
-# а это дублирует в образе весь data-каталог.
 RUN umask 000 && nvim --headless "+Lazy! sync" "+luafile /opt/nvim/config/nvim/build.lua" +qa
 
-# Конфиг попал в образ через COPY с обычными правами, а state/cache nvim
-# создаёт с режимом 700 — открываем их для любого UID. Это несколько
-# килобайт, в отличие от data (он уже 777 благодаря umask 000).
-# safe.directory нужен для плагинов внутри образа (они принадлежат root),
-# иначе git в :Lazy ругается на dubious ownership; область — только пути образа.
 RUN mkdir -p /opt/nvim/data /opt/nvim/state /opt/nvim/cache \
     && chmod -R a+rwX /opt/nvim/config /opt/nvim/state /opt/nvim/cache \
     && git config --system --add safe.directory '/opt/nvim/*'
