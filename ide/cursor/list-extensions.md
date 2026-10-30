@@ -1,0 +1,10 @@
+anysphere.remote-ssh
+cardinal90.multi-cursor-case-preserve
+esbenp.prettier-vscode
+formulahendry.auto-rename-tag
+makebetterproducts.pm-toolbox
+ms-vscode.live-server
+pucelle.vscode-css-navigation
+rust-lang.rust-analyzer
+vscodevim.vim
+vue.volar

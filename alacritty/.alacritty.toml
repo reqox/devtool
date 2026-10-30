@@ -1,0 +1,21 @@
+[window]
+padding = { x=10, y=10 }
+decorations = "None"
+
+[font]
+size = 11
+
+[font.normal]
+family = "JetBrainsMono NF"
+
+[selection]
+save_to_clipboard = true
+
+# OSC 52: приложениям разрешено только писать в буфер (копировать).
+# Чтение ("CopyPaste") не включаем: иначе любой процесс на удалённом хосте
+# сможет вытащить содержимое локального буфера.
+[terminal]
+osc52 = "OnlyCopy"
+
+[mouse]
+hide_when_typing = true
