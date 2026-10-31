@@ -1,0 +1,2 @@
+event=video/brightness(up|down)
+action=/home/lux/.devtool/system/acpi/brightness.sh %e
